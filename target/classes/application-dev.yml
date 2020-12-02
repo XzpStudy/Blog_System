@@ -1,0 +1,21 @@
+server:
+  port: 88
+spring:
+  application:
+    name: blog_system
+  datasource:
+    url: jdbc:mysql://192.168.230.129:3306/blog_system?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&useSSL=false
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: 123456
+  jpa:
+    show-sql: true
+  redis:
+    host:  192.168.230.129 # Redis服务器地址
+    port:  6379 # Redis服务器连接端口
+    password:  123456 # Redis服务器连接密码
+blog.system.image.save-path: C:\WorkSpace\image
+blog.system.image.max-size: 3145728 #3MB  3*1024*1024
+mybatis:
+  config-location: classpath:/mybatis/mybatis-config.xml
+  mapper-locations: classpath:/mybatis/mapper/*.xml

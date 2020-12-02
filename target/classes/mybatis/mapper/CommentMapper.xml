@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.person.blog.dao.CommentMapper">
+
+    <select id="findOneById" resultType="net.person.blog.pojo.Comment">
+        select * from tb_comment where id=#{commentId}
+    </select>
+
+    <update id="updateCommentTop">
+        update tb_comment set top=#{top} where id=#{id}
+    </update>
+
+    <select id="getCommentsByPage" resultType="net.person.blog.pojo.Comment">
+        select * from tb_comment limit #{startIndex},#{size}
+    </select>
+
+    <update id="deleteCommentByUpdateState">
+        update tb_comment set state='0' where id=#{commentId}
+    </update>
+
+</mapper>

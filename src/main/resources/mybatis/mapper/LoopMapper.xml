@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.person.blog.dao.LoopMapper">
+
+    <select id="findOneById" resultType="net.person.blog.pojo.Looper">
+        select * from tb_looper where id=#{loopId}
+    </select>
+
+    <select id="listLoopsByState" resultType="net.person.blog.pojo.Looper">
+        select * from tb_looper where state = '1'
+    </select>
+
+    <insert id="insertLoop">
+        insert into tb_looper (id, title, target_url, image_url, create_time, update_time) VALUE
+        (#{id},#{title},#{targetUrl},#{imageUrl},#{createTime},#{updateTime})
+    </insert>
+
+    <select id="listLoops" resultType="net.person.blog.pojo.Looper">
+        select * from tb_looper order by create_time DESC
+    </select>
+
+    <update id="updateLoopByConditions">
+        update tb_looper
+        <trim prefix="set" suffixOverrides=",">
+            <if test="title!=null and title!=''">title=#{title}</if>
+            <if test="targetUrl!=null and targetUrl!=''">target_url=#{targetUrl}</if>
+            <if test="imageUrl!=null and imageUrl!=''">image_url=#{imageUrl}</if>
+            <if test="state!=null and state!=''">state=#{state}</if>
+            <if test="orders!=null">orders=#{orders}</if>
+            <if test="updateTime!=null">update_time=#{updateTime}</if>
+        </trim>
+    </update>
+
+    <update id="deleteLooperByUpdateState">
+        update tb_looper set state='0' where id=#{loopId}
+    </update>
+
+
+</mapper>

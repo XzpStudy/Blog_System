@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.person.blog.dao.FriendLinkMapper">
+
+    <select id="findOneById" resultType="net.person.blog.pojo.FriendLink">
+        select * from tb_friends where id=#{id}
+    </select>
+
+    <delete id="deleteAllById">
+        delete from tb_friends where id=#{friendLinkId}
+    </delete>
+
+    <select id="listFriendLinkByState" resultType="net.person.blog.pojo.FriendLink">
+        select * from tb_friends where state='1' order by create_time DESC
+    </select>
+
+    <insert id="insertFriendLink">
+        insert into tb_friends (id, name, logo, url, create_time, update_time) VALUE
+        (#{id},#{name},#{logo},#{url},#{createTime},#{updateTime})
+    </insert>
+
+    <update id="updateFriendLinkByConditions">
+        update tb_friends
+        <trim prefix="set" suffixOverrides=",">
+            <if test="logo!=null and logo!=''">logo=#{logo}</if>
+            <if test="url!=null and url!=''">url=#{url}</if>
+            <if test="name!=null and name!=''">`name`=#{name}</if>
+            <if test="orders!=null">orders=#{orders}</if>
+            <if test="updateTime!=null">update_time=#{updateTime}</if>
+        </trim>
+    </update>
+
+
+</mapper>

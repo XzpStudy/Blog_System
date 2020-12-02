@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.person.blog.dao.BlogUserMapper">
+
+    <select id="findOneByUserName" resultType="net.person.blog.pojo.BlogUser">
+        select id, user_name,  roles, avatar, email, sign, state, reg_ip, login_ip, create_time, update_time from tb_user where user_name=#{userName}
+    </select>
+
+
+    <select id="findOneByEmail" resultType="net.person.blog.pojo.BlogUser">
+        select id, user_name,  roles, avatar, email, sign, state, reg_ip, login_ip, create_time, update_time from tb_user where email=#{email}
+    </select>
+
+    <select id="findOneById" resultType="net.person.blog.pojo.BlogUser">
+        select id, user_name,  roles, avatar, email, sign, state, reg_ip, login_ip, create_time, update_time from tb_user where id=#{userId}
+    </select>
+
+    <update id="deleteUserByState">
+        update tb_user set state='0' where id=#{userId}
+    </update>
+
+    <update id="updatePasswordByEmail">
+        update tb_user set password=#{encode} where email=#{email}
+    </update>
+
+    <update id="updateEmailById">
+        update tb_user set email=#{email} where id=#{id}
+    </update>
+
+    <insert id="insertOneUser">
+        insert into tb_user (id, user_name, password, roles, avatar, email, state, reg_ip, login_ip, create_time, update_time) VALUE
+            (#{id},#{userName},#{password},#{roles},#{avatar},#{email},#{state},#{regIp},#{loginIp},#{createTime},#{updateTime})
+    </insert>
+
+    <update id="updateUserByCondition">
+        update tb_user
+            <trim prefix="set" suffixOverrides=",">
+                <if test="userName!=null and userName!=''">user_name=#{userName},</if>
+                <if test="avatar!=null and avatar!=''">avatar=#{avatar},</if>
+                <if test="sign!=null and sign!=''">sign=#{sign},</if>
+                <if test="updateTime!=null">update_time=#{updateTime}</if>
+            </trim>
+        where id=#{id}
+    </update>
+
+    <select id="getUserByPage" resultType="net.person.blog.pojo.BlogUser">
+        select id, user_name,  roles, avatar, email, sign, state, reg_ip, login_ip, create_time, update_time
+        from tb_user limit #{startIndex},#{size}
+    </select>
+</mapper>

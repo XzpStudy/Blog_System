@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.person.blog.dao.ArticleMapper">
+
+    <select id="findOneById" resultType="net.person.blog.pojo.Article">
+        select * from tb_article where id=#{id}
+    </select>
+
+    <select id="findOneNoContent" resultType="net.person.blog.pojo.Article">
+        select id,title,user_id,category_id,type,state,top,cover,summary,label,view_count,create_time,update_time
+        from tb_article where id=#{id}
+    </select>
+
+    <delete id="deleteOneById">
+        delete from tb_article where id=#{articleId}
+    </delete>
+
+    <update id="deleteArticleByUpdateState">
+        update tb_article set state='0' where id=#{articleId}
+    </update>
+
+    <select id="findLabelById" resultType="java.lang.String">
+        select label from tb_article where id=#{articleId}
+    </select>
+
+    <select id="getArticlesNoContentByConditions" resultType="net.person.blog.pojo.Article">
+        select id,title,user_id,category_id,type,state,top,cover,summary,label,view_count,create_time,update_time
+        from tb_article
+            <where>
+                <if test="state!=null and state!=''">state=#{state}</if>
+                <if test="categoryId!=null and categoryId!=''">and category_id=#{categoryId}</if>
+                <if test="title!=null and title!=''">and title like #{title}</if>
+            </where>
+        limit #{startIndex},#{size}
+    </select>
+
+    <update id="updateArticleTop">
+        update tb_article set top=#{top} where id=#{id}
+    </update>
+
+
+    <select id="findArticlesByTop" resultType="net.person.blog.pojo.Article">
+        select * from tb_article where top=#{top}
+    </select>
+
+
+    <insert id="insertArticle">
+        insert into tb_article (id, title, user_id, category_id, content, type, state, summary, label, create_time, update_time) VALUE
+        (#{id},#{title},#{userId},#{categoryId},#{content},#{type},#{state},#{summary},#{label},#{createTime},#{updateTime})
+    </insert>
+
+
+    <update id="updateArticleByConditions">
+        update tb_article
+        <trim prefix="set" suffixOverrides=",">
+            <if test="title!=null and title!=''">title=#{title},</if>
+            <if test="summary!=null and summary!=''">summary=#{summary},</if>
+            <if test="content!=null and content!=''">content=#{content},</if>
+            <if test="label!=null and label!=''">label=#{label},</if>
+            <if test="type!=null and type!=''">type=#{type},</if>
+            <if test="categoryId!=null and categoryId!=''">category_id=#{categoryId},</if>
+            <if test="cover!=null and cover!=''">cover=#{cover},</if>
+            <if test="updateTime!=null">update_time=#{updateTime}</if>
+        </trim>
+        where id=#{id}
+    </update>
+
+</mapper>

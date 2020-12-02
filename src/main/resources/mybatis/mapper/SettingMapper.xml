@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.person.blog.dao.SettingMapper">
+
+    <select id="findOneByKey" resultType="net.person.blog.pojo.Setting">
+        select * from tb_settings where `key`=#{key}
+    </select>
+
+    <insert id="insertOneSetting">
+        insert into tb_settings (id, `key`, value, create_time, update_time) VALUE (#{id},#{key},#{value},#{createTime},#{updateTime})
+    </insert>
+
+    <update id="updateSetting">
+        update tb_settings set value=#{value},update_time=#{updateTime} where `key`=#{key}
+    </update>
+
+</mapper>

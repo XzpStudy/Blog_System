@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.person.blog.dao.RefreshTokenMapper">
+
+    <select id="findOneByTokenKey" resultType="net.person.blog.pojo.RefreshToken">
+        select * from tb_refresh_token where token_key=#{tokenKey}
+    </select>
+
+    <delete id="deleteAllByUserId">
+        delete from tb_refresh_token where user_id=#{userId}
+    </delete>
+
+    <delete id="deleteAllByTokenKey">
+        delete from tb_refresh_token where token_key=#{tokenKey}
+    </delete>
+
+    <insert id="insertOneRefreshToken">
+        insert into tb_refresh_token (id, refresh_token, user_id, token_key, create_time, update_time) VALUE
+        (#{id},#{refreshToken},#{userId},#{tokenKey},#{createTime},#{updateTime})
+    </insert>
+
+
+</mapper>

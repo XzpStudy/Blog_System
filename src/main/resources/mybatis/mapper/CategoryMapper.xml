@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.person.blog.dao.CategoryMapper">
+
+    <select id="findOneById" resultType="net.person.blog.pojo.Category">
+        select * from tb_categories where id=#{categoryId}
+    </select>
+
+    <update id="deleteCategoryByUpdateState">
+        update tb_categories set status='0' where id=#{categoryId}
+    </update>
+
+    <select id="listCommonCategoryByState" resultType="net.person.blog.pojo.Category">
+        select * from tb_categories where status='1'
+    </select>
+
+    <insert id="insertCategory">
+        insert into tb_categories (id, name, pinyin, description, orders, status, create_time, update_time) value
+        (#{id},#{name},#{pinyin},#{description},#{orders},#{statue},#{createTime},#{updateTime})
+    </insert>
+
+    <select id="getCategoriesByPage" resultType="net.person.blog.pojo.Category">
+        select * from tb_categories limit #{startIndex},#{size}
+    </select>
+
+    <update id="updateCategoryByCondition">
+        update tb_categories
+            <trim prefix="set" suffixOverrides=",">
+                <if test="name!=null and name!=''">name=#{name},</if>
+                <if test="pinyin!=null and pinyin!=''">pinyin=#{pinyin},</if>
+                <if test="description!=null and description!=''">description=#{description},</if>
+                <if test="orders!=null">orders=#{orders},</if>
+                <if test="updateTime!=null">updateTime=#{updateTime}</if>
+            </trim>
+        where id=#{id}
+    </update>
+
+
+</mapper>

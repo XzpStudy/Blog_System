@@ -1,0 +1,4 @@
+[2020/08/23-13:13:36] [main] [INFO ] [net.person.blog.BlogApplication] : Starting BlogApplication on PC-20200812ZBZA with PID 5520 (F:\WorkSpace\IDEAWorkSpace\BlogSystem\target\classes started by Administrator in F:\WorkSpace\IDEAWorkSpace\BlogSystem)
+[2020/08/23-13:13:36] [main] [INFO ] [net.person.blog.BlogApplication] : The following profiles are active: dev
+[2020/08/23-13:20:04] [main] [INFO ] [net.person.blog.BlogApplication] : Starting BlogApplication on PC-20200812ZBZA with PID 2952 (F:\WorkSpace\IDEAWorkSpace\BlogSystem\target\classes started by Administrator in F:\WorkSpace\IDEAWorkSpace\BlogSystem)
+[2020/08/23-13:20:04] [main] [INFO ] [net.person.blog.BlogApplication] : The following profiles are active: dev

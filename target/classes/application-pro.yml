@@ -1,0 +1,21 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: blog_system
+  datasource:
+    url: jdbc:mysql://192.168.230.129:3306/blog_system?characterEncoding=utf-8&useSSL=false
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: 123456
+  jpa:
+    show-sql: true
+  redis:
+    host:  192.168.244.129 # Redis服务器地址
+    port:  6379 # Redis服务器连接端口
+    password:  123456 # Redis服务器连接密码
+blog.system.image.save-path: /var/image
+blog.system.image.max-size: 10485760 #10M
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true

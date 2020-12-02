@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.person.blog.dao.ImageMapper">
+
+    <select id="findOneById" resultType="net.person.blog.pojo.Image">
+        select * from tb_images where id=#{imageId}
+    </select>
+
+    <update id="deleteImageByUpdateState">
+        update tb_images set state='0' where id=#{imageId}
+    </update>
+
+    <insert id="insertImageMessage">
+        insert into tb_images (id, user_id, url, state, create_time, update_time, name, content_type, path) VALUE
+        (#{id},#{userId},#{url},#{state},#{createTime},#{updateTime},#{name},#{contentType},#{path})
+    </insert>
+
+    <select id="getImagesByConditions" resultType="net.person.blog.pojo.Image">
+        select * from tb_images
+        <where>
+            <if test="userId!=null and userId!=''">user_id=#{userId}</if>
+            <if test="state=='1'">and state=#{state}</if>
+        </where>
+        limit #{startIndex},#{size}
+    </select>
+
+
+</mapper>
