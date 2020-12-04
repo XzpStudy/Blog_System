@@ -22,7 +22,7 @@ public class EmailSend {
     private List<MimeBodyPart> attachments = new ArrayList<MimeBodyPart>();
 
     private EmailSend() {
-        EmailSend.config(EmailSend.SMTP_QQ(false), "person.user@qq.com", "oqqfdbxctxrwdbah");
+        EmailSend.config(EmailSend.SMTP_QQ(false), "person.user@qq.com", "zaqfdcxxtxrxdbzh");
     }
 
     public static Properties defaultConfig(Boolean debug) {
