@@ -45,7 +45,7 @@ public class TestController {
         // 设置字体
         // specCaptcha.setFont(new Font("Verdana", Font.PLAIN, 32));  // 有默认字体，可以不用设置
         specCaptcha.setFont(Captcha.FONT_1);
-        // 设置类型，纯数字、纯字母、字母数字混合
+        // 设置类型，纯数字、纯字母、字母数字混合      1oqqfdb2xctx3rwdbah4
         //specCaptcha.setCharType(Captcha.TYPE_ONLY_NUMBER);
         specCaptcha.setCharType(Captcha.TYPE_DEFAULT);
 
